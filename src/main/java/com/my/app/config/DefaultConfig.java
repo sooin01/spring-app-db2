@@ -8,6 +8,7 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -50,6 +51,7 @@ public class DefaultConfig {
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
 		jpaVendorAdapter.setShowSql(true);
 		jpaVendorAdapter.setGenerateDdl(false);
+		jpaVendorAdapter.setDatabase(Database.DB2);
 		jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.DB2Dialect");
 		return jpaVendorAdapter;
 	}
