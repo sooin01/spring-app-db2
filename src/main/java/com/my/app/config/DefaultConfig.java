@@ -4,6 +4,8 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -13,21 +15,11 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.my.app.sample.dao.SampleDao;
-import com.my.app.sample.service.SampleService;
 
 @Configuration
+@ImportResource(value = "spring-jpa.xml")
+@Import(BeanConfig.class)
 public class DefaultConfig {
-
-	@Bean
-	public SampleService sampleService() {
-		return new SampleService();
-	}
-
-	@Bean
-	public SampleDao sampleDao() {
-		return new SampleDao();
-	}
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() throws Exception {
