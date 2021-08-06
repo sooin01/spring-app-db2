@@ -4,10 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -16,8 +13,9 @@ public class User {
 
 	@Id
 	@Column(name = "SEQ")
-	@SequenceGenerator(name = "userSeq", sequenceName = "USER_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
+	// @SequenceGenerator(name = "userSeq", sequenceName = "USER_SEQ",
+	// allocationSize = 1)
+	// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
 	private Integer seq;
 
 	@Column(name = "USER_ID")
