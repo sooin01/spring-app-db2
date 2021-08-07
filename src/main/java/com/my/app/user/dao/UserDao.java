@@ -24,7 +24,7 @@ public class UserDao {
 	}
 
 	public void save(User user) {
-		user.setSeq(getMax());
+		// user.setSeq(getMax());
 		em.persist(user);
 	}
 
