@@ -41,7 +41,7 @@ public class DefaultConfig {
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-		jpaVendorAdapter.setShowSql(true);
+		jpaVendorAdapter.setShowSql(false);
 		jpaVendorAdapter.setGenerateDdl(false);
 		jpaVendorAdapter.setDatabase(Database.DB2);
 		jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.DB2Dialect");

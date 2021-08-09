@@ -5,10 +5,10 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table
@@ -16,14 +16,14 @@ public class User {
 
 	@Id
 	@Column(name = "SEQ")
-	// @SequenceGenerator(name = "userSeq", sequenceName = "USER_SEQ",
-	// allocationSize = 1)
-	// @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
-	@GenericGenerator(name = "userMaxGenerator", strategy = "com.my.app.common.generator.UserMaxGenerator")
+	@SequenceGenerator(name = "userSeq", sequenceName = "USER_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
+	// @GenericGenerator(name = "userMaxGenerator", strategy =
+	// "com.my.app.common.generator.UserMaxGenerator")
 	// @GenericGenerator(name = "increment", strategy = "increment", parameters = {
 	// @Parameter(name = "column", value = "seq"), @Parameter(name = "tables", value
 	// = "User") })
-	@GeneratedValue(generator = "userMaxGenerator")
+	// @GeneratedValue(generator = "userMaxGenerator")
 	private Integer seq;
 
 	@Column(name = "USER_ID")
