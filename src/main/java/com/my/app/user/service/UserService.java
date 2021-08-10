@@ -2,6 +2,8 @@ package com.my.app.user.service;
 
 import java.util.Date;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ import com.my.app.user.entity.User;
 @Service
 public class UserService {
 
-	private final Logger logger = Logger.getLogger(this.getClass());
+	private final Log log = LogFactory.getLog(this.getClass());
 
 	@Autowired
 	private UserDao userDao;
@@ -25,9 +27,12 @@ public class UserService {
 
 	@Transactional
 	public void save() {
+		log.debug("안녕1");
+		Logger.getLogger("com.my.app").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.SQL").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.event").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.pretty").setLevel(Level.DEBUG);
+		log.debug("안녕2");
 
 		User user = new User();
 		user.setUserId("user1");
