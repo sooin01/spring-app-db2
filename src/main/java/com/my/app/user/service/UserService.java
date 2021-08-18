@@ -2,6 +2,8 @@ package com.my.app.user.service;
 
 import java.util.Date;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Level;
@@ -16,23 +18,24 @@ import com.my.app.user.entity.User;
 @Service
 public class UserService {
 
-	private final Log log = LogFactory.getLog(this.getClass());
+	private static final Log log = LogFactory.getLog(UserService.class);
 
 	@Autowired
 	private UserDao userDao;
 
-	public UserService() {
-//		Logger.getLogger("org.hibernate.SQL").setLevel(Level.DEBUG);
+	@PostConstruct
+	public void init() {
+		log.info("초기화!");
 	}
 
 	@Transactional
 	public void save() {
-		log.debug("안녕1");
+		// log.debug("안녕1");
 		Logger.getLogger("com.my.app").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.SQL").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.event").setLevel(Level.DEBUG);
 		Logger.getLogger("org.hibernate.pretty").setLevel(Level.DEBUG);
-		log.debug("안녕2");
+		// log.debug("안녕2");
 
 		User user = new User();
 		user.setUserId("user1");

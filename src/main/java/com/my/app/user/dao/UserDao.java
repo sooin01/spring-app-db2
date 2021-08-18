@@ -24,7 +24,8 @@ public class UserDao {
 	}
 
 	public void save(User user) {
-		em.persist(user);
+		em.persist(user); // INSERT 쿼리 생성
+		// em.flush(); // 쿼리를 DB로 보냄
 	}
 
 }
