@@ -3,12 +3,12 @@ package com.my.app.user.service;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +20,18 @@ public class UserService {
 
 	private static final Log log = LogFactory.getLog(UserService.class);
 
-	@Autowired
+	// @Autowired
 	private UserDao userDao;
+
+	public UserService() {
+		log.info("생성자1");
+	}
+
+	@Inject
+	public UserService(UserDao userDao) {
+		log.info("생성자2");
+		this.userDao = userDao;
+	}
 
 	@PostConstruct
 	public void init() {

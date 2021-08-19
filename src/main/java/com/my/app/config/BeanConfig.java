@@ -22,8 +22,8 @@ public class BeanConfig {
 	}
 
 	@Bean
-	public UserService userService() {
-		return new UserService();
+	public UserService userService(UserDao userDao) {
+		return new UserService(userDao);
 	}
 
 	@Bean
