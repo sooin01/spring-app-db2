@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,17 +22,11 @@ public class UserService {
 
 	public static final BlockingQueue<String> QUEUE = new LinkedBlockingQueue<String>();
 
-	// @Autowired
+	@Autowired
 	private UserDao userDao;
 
 	public UserService() {
-		log.info("생성자1");
-	}
-
-	// @Inject
-	public UserService(UserDao userDao) {
-		log.info("생성자2");
-		this.userDao = userDao;
+		log.info("생성자!");
 	}
 
 	// @PostConstruct
