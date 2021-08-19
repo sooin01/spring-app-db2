@@ -22,6 +22,7 @@ public class SpringApplication {
 	}
 
 	public static void main(String[] args) {
+		System.out.println("메인 호출!!");
 		log.info("메인 호출!");
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(DefaultConfig.class);

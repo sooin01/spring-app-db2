@@ -1,9 +1,8 @@
 package com.my.app.user.service;
 
 import java.util.Date;
-
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,6 +19,8 @@ public class UserService {
 
 	private static final Log log = LogFactory.getLog(UserService.class);
 
+	public static final BlockingQueue<String> QUEUE = new LinkedBlockingQueue<String>();
+
 	// @Autowired
 	private UserDao userDao;
 
@@ -27,15 +28,27 @@ public class UserService {
 		log.info("생성자1");
 	}
 
-	@Inject
+	// @Inject
 	public UserService(UserDao userDao) {
 		log.info("생성자2");
 		this.userDao = userDao;
 	}
 
-	@PostConstruct
+	// @PostConstruct
 	public void init() {
 		log.info("초기화!");
+	}
+
+	public void run() {
+		// 저장
+		// QUEUE.offer("");
+		// QUEUE.put(null);
+
+		// 꺼내기
+		String poll = QUEUE.poll(); // 기다림
+		QUEUE.peek(); // 안기다림
+
+		// 로직처리
 	}
 
 	@Transactional
