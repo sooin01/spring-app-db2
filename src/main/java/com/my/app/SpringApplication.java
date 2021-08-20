@@ -4,8 +4,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.my.app.config.DefaultConfig;
+import com.my.app.user.service.UserQueueService;
 import com.my.app.user.service.UserService;
 
 public class SpringApplication {
@@ -27,8 +29,21 @@ public class SpringApplication {
 
 		ApplicationContext context = new AnnotationConfigApplicationContext(DefaultConfig.class);
 
+		UserQueueService userQueueService = context.getBean(UserQueueService.class);
+		userQueueService.setRun(true);
+		userQueueService.run();
+
 		UserService userService = context.getBean(UserService.class);
 		userService.save();
+
+		userQueueService.put("A");
+		userQueueService.put("B");
+
+		userQueueService.setRun(false);
+		context.getBean(ThreadPoolTaskExecutor.class).shutdown();
+
+		System.out.println("메인 종료!!");
+		log.info("메인 종료!");
 	}
 
 }
