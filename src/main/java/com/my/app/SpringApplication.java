@@ -39,6 +39,11 @@ public class SpringApplication {
 		userQueueService.put("A");
 		userQueueService.put("B");
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+		}
+
 		userQueueService.setRun(false);
 		context.getBean(ThreadPoolTaskExecutor.class).shutdown();
 
