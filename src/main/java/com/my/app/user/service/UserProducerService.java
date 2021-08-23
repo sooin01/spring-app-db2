@@ -25,8 +25,8 @@ public class UserProducerService extends Thread {
 		jmsTemplate.execute("testQueue", new ProducerCallback<Object>() {
 			@Override
 			public Object doInJms(Session session, MessageProducer producer) throws JMSException {
-				TextMessage msg = session.createTextMessage("Message number : 1");
-				log.trace("Sending msg: " + msg);
+				TextMessage msg = session.createTextMessage("Test message!");
+				log.trace("message: " + msg);
 				producer.send(msg);
 				return null;
 			}
