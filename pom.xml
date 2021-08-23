@@ -26,6 +26,11 @@
 			<artifactId>spring-orm</artifactId>
 			<version>3.0.5.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -92,6 +97,54 @@
 			<groupId>commons-dbutils</groupId>
 			<artifactId>commons-dbutils</artifactId>
 			<version>1.7</version>
+		</dependency>
+
+		<!-- HornetQ -->
+		<dependency>
+			<groupId>org.hornetq</groupId>
+			<artifactId>hornetq-core</artifactId>
+			<version>2.0.0.GA</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hornetq</groupId>
+			<artifactId>hornetq-jms</artifactId>
+			<version>2.0.0.GA</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hornetq</groupId>
+			<artifactId>hornetq-logging</artifactId>
+			<version>2.0.0.GA</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hornetq</groupId>
+			<artifactId>hornetq-transports</artifactId>
+			<version>2.0.0.GA</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.netty</groupId>
+			<artifactId>netty</artifactId>
+			<version>3.1.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.javaee</groupId>
+			<artifactId>jboss-jms-api</artifactId>
+			<version>1.1.0.GA</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss</groupId>
+			<artifactId>jboss-common-core</artifactId>
+			<version>2.2.10.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging-spi</artifactId>
+			<version>2.0.5.GA</version>
 		</dependency>
 	</dependencies>
 
