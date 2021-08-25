@@ -1,18 +1,11 @@
 package com.my.app.config;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.sql.DataSource;
 
-import org.hornetq.api.core.TransportConfiguration;
-import org.hornetq.integration.transports.netty.NettyConnectorFactory;
-import org.hornetq.jms.client.HornetQConnectionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -67,22 +60,4 @@ public class DefaultConfig {
 		return new PersistenceExceptionTranslationPostProcessor();
 	}
 
-	@Bean
-	public HornetQConnectionFactory connectionFactory() {
-		Map<String, Object> params = new HashMap<>();
-		params.put("host", "192.168.200.128");
-		params.put("port", 5445);
-		TransportConfiguration configuration = new TransportConfiguration(NettyConnectorFactory.class.getName(),
-				params);
-
-		HornetQConnectionFactory connectionFactory = new HornetQConnectionFactory(configuration);
-		return connectionFactory;
-	}
-
-	@Bean
-	public JmsTemplate jmsTemplate() {
-		JmsTemplate jmsTemplate = new JmsTemplate();
-		jmsTemplate.setConnectionFactory(connectionFactory());
-		return jmsTemplate;
-	}
 }

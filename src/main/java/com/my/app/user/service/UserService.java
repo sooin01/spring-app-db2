@@ -20,14 +20,10 @@ public class UserService {
 
 	private static final Log log = LogFactory.getLog(UserService.class);
 
-	public static final BlockingQueue<String> QUEUE = new LinkedBlockingQueue<String>();
+	public static final BlockingQueue<String> QUEUE = new LinkedBlockingQueue<>();
 
 	@Autowired
 	private UserDao userDao;
-
-	public UserService() {
-		log.info("생성자!");
-	}
 
 	// @PostConstruct
 	public void init() {
@@ -41,7 +37,7 @@ public class UserService {
 
 		// 꺼내기
 		String poll = QUEUE.poll(); // 기다림
-		QUEUE.peek(); // 안기다림
+		String peek = QUEUE.peek(); // 안기다림
 
 		// 로직처리
 	}

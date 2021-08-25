@@ -7,7 +7,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.my.app.config.DefaultConfig;
-import com.my.app.user.service.UserProducerService;
 import com.my.app.user.service.UserQueueService;
 import com.my.app.user.service.UserService;
 
@@ -33,21 +32,16 @@ public class SpringApplication {
 		UserService userService = context.getBean(UserService.class);
 		userService.save();
 
-		new Thread(context.getBean(UserProducerService.class)).start();
-
 		UserQueueService userQueueService = context.getBean(UserQueueService.class);
-		userQueueService.setRun(true);
 		userQueueService.run();
-
-		userQueueService.put("A");
-		userQueueService.put("B");
-
 		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
+			Thread.sleep(5 * 1000);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		userQueueService.close();
 
-		userQueueService.setRun(false);
+		// 쓰레드풀 종료
 		context.getBean(ThreadPoolTaskExecutor.class).shutdown();
 
 		System.out.println("메인 종료!!");
