@@ -27,6 +27,12 @@ public class SpringApplication {
 		System.out.println("메인 호출!!");
 		log.info("메인 호출!");
 
+		try {
+			Thread.sleep(30000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 		ApplicationContext context = new AnnotationConfigApplicationContext(DefaultConfig.class);
 
 		UserService userService = context.getBean(UserService.class);
