@@ -18,7 +18,32 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>3.0.5.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 			<version>3.0.5.RELEASE</version>
 		</dependency>
 		<dependency>
@@ -155,7 +180,7 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.3.0</version>
@@ -177,6 +202,37 @@
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 				</configuration>
+			</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>
+								${project.build.directory}/libs
+							</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-jar-plugin</artifactId>
+			    <version>3.2.0</version>
+			    <configuration>
+			        <archive>
+			            <manifest>
+			                <addClasspath>true</addClasspath>
+			                <classpathPrefix>libs/</classpathPrefix>
+			                <mainClass>com.my.app.SpringApplication</mainClass>
+			            </manifest>
+			        </archive>
+			    </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -191,7 +247,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<fromFile>${project.build.directory}/${project.artifactId}-${project.version}-jar-with-dependencies.jar</fromFile>
+					<fromFile>${project.build.directory}/${project.artifactId}-${project.version}.jar</fromFile>
 					<url>scp://stack:admin123@192.168.200.128:22</url>
 					<toFile>opt/jar/${project.artifactId}-${project.version}.jar</toFile>
 				</configuration>

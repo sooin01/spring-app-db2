@@ -1,5 +1,7 @@
 package com.my.app.user.service;
 
+import static javax.jms.Session.AUTO_ACKNOWLEDGE;
+
 import java.util.Properties;
 
 import javax.jms.JMSException;
@@ -31,7 +33,7 @@ public class UserQueueService {
 	public void run() {
 		Properties props = new Properties();
 		props.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
-		props.put(Context.PROVIDER_URL, "remote://127.0.0.1:4447");
+		props.put(Context.PROVIDER_URL, "remote://192.168.200.128:4447");
 		props.put(Context.SECURITY_PRINCIPAL, "stack");
 		props.put(Context.SECURITY_CREDENTIALS, "admin123");
 
@@ -42,7 +44,7 @@ public class UserQueueService {
 			connection.start();
 
 			Queue queue = (Queue) ctx.lookup("jms/queue/test");
-			session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
+			session = connection.createQueueSession(false, AUTO_ACKNOWLEDGE);
 			MessageProducer producer = session.createProducer(queue);
 			MessageConsumer consumer = session.createConsumer(queue);
 
